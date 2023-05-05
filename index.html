@@ -4,46 +4,55 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
     <title>Odin Tic Tac Toe</title>
   </head>
   <body>
     <main>
-      <section class="player-container">
-        <div class="p1-container">
-          <div class="player-one">
-            <p class="name-one">Player 1</p>
-            <p class="marker-one">X</p>
-          </div>
-          <div class="p1-healthbar">
-            <img src="img/healthbar-red-full.png" />
+      <div class="modal-container">
+        <div class="modal-content">
+          <img class="modal-img" src="img/modal-image.png" />
+          <div class="modal-main">
+            <form action="" method="">
+              <h2>What is your name?</h2>
+              <div class="p1-container">
+                <label for="p1-name" class="p1-label">Player 1:</label>
+                <input
+                  name="p1-name"
+                  type="text"
+                  class="p1-input"
+                  maxlength="16"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+              <div class="p2-container">
+                <label for="p2-name" class="p2-label">Player 2:</label>
+                <input
+                  name="p2-name"
+                  type="text"
+                  class="p2-input"
+                  maxlength="16"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+              <button class="submit-names">Start</button>
+            </form>
           </div>
         </div>
-        <div class="p1-score">
-          <p class="score-one">0</p>
-        </div>
-        <div class="p2-score">
-          <p class="score-two">0</p>
-        </div>
-        <div class="p2-container">
-          <div class="player-two">
-            <p class="marker-two">O</p>
-            <p class="name-two">Player 2</p>
-          </div>
-          <div class="p2-healthbar">
-            <img src="img/healthbar-blue-full.png" />
-          </div>
-        </div>
-      </section>
+      </div>
 
-      <section class="control-container">
-        <div class="start-container">
-          <button class="start">Start</button>
-        </div>
-        <div class="reset-container">
-          <button class="reset">Reset</button>
-        </div>
+      <section class="logo-container">
+        <img class="logo-img" src="img/lux-logo.png" />
+        <button class="start">Start</button>
       </section>
 
       <section class="board-container">

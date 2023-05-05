@@ -15,17 +15,9 @@ const playGame = {
       cell[i].addEventListener("click", function () {
         if (turn === 1 && cellContent[i].textContent === "") {
           cellContent[i].textContent = playerOne.marker;
-          document.querySelector(".player-two").style.backgroundColor =
-            "#335551";
-          document.querySelector(".player-one").style.backgroundColor =
-            "var(--cell-bg-clr)";
           turn = 2;
         } else if (turn === 2 && cellContent[i].textContent === "") {
           cellContent[i].textContent = playerTwo.marker;
-          document.querySelector(".player-one").style.backgroundColor =
-            "#335551";
-          document.querySelector(".player-two").style.backgroundColor =
-            "var(--cell-bg-clr)";
           turn = 1;
         }
       });
