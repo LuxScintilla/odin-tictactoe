@@ -9,32 +9,56 @@
     <title>Odin Tic Tac Toe</title>
   </head>
   <body>
-    <section class="player-container">
-      <div class="player-one"><p class="name-one">Player 1</p></div>
-      <div class="player-two"><p class="name-two">Player 2</p></div>
-    </section>
+    <main>
+      <section class="player-container">
+        <div class="p1-container">
+          <div class="player-one">
+            <p class="name-one">Player 1</p>
+            <p class="marker-one">X</p>
+          </div>
+          <div class="p1-healthbar">
+            <img src="img/healthbar-red-full.png" />
+          </div>
+        </div>
+        <div class="p1-score">
+          <p class="score-one">0</p>
+        </div>
+        <div class="p2-score">
+          <p class="score-two">0</p>
+        </div>
+        <div class="p2-container">
+          <div class="player-two">
+            <p class="marker-two">O</p>
+            <p class="name-two">Player 2</p>
+          </div>
+          <div class="p2-healthbar">
+            <img src="img/healthbar-blue-full.png" />
+          </div>
+        </div>
+      </section>
 
-    <section class="score-container">
-      <div class="player-one-score">
-        <p class="score-one-title">Score</p>
-        <p class="score-one">0</p>
-      </div>
-      <div class="player-two-score">
-        <p class="score-two-title">Score</p>
-        <p class="score-two">0</p>
-      </div>
-    </section>
+      <section class="control-container">
+        <div class="start-container">
+          <button class="start">Start</button>
+        </div>
+        <div class="reset-container">
+          <button class="reset">Reset</button>
+        </div>
+      </section>
 
-    <section class="board">
-      <div class="board-cell"><p class="content"></p></div>
-      <div class="board-cell"><p class="content"></p></div>
-      <div class="board-cell"><p class="content"></p></div>
-      <div class="board-cell"><p class="content"></p></div>
-      <div class="board-cell"><p class="content"></p></div>
-      <div class="board-cell"><p class="content"></p></div>
-      <div class="board-cell"><p class="content"></p></div>
-      <div class="board-cell"><p class="content"></p></div>
-      <div class="board-cell"><p class="content"></p></div>
-    </section>
+      <section class="board-container">
+        <div class="board">
+          <div class="board-cell"><p class="content"></p></div>
+          <div class="board-cell"><p class="content"></p></div>
+          <div class="board-cell"><p class="content"></p></div>
+          <div class="board-cell"><p class="content"></p></div>
+          <div class="board-cell"><p class="content"></p></div>
+          <div class="board-cell"><p class="content"></p></div>
+          <div class="board-cell"><p class="content"></p></div>
+          <div class="board-cell"><p class="content"></p></div>
+          <div class="board-cell"><p class="content"></p></div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

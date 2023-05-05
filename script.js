@@ -1,12 +1,10 @@
-const playerOne = {
-  name: "Player 1",
-  marker: "X",
-};
+function createPlayer(name, marker) {
+  this.name = name;
+  this.marker = marker;
+}
 
-const playerTwo = {
-  name: "Player 2",
-  marker: "O",
-};
+const playerOne = new createPlayer("Player 1", "X");
+const playerTwo = new createPlayer("Player 2", "O");
 
 const playGame = {
   placeMarker: function () {
