@@ -1,10 +1,48 @@
+const modal = document.querySelector(".modal-container");
+
+document.querySelector(".mp-button").addEventListener("click", function () {
+  modal.style.display = "flex";
+});
+document.querySelector(".exit").addEventListener("click", function () {
+  modal.style.display = "none";
+});
+window.addEventListener("click", function (e) {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+document.querySelector(".submit-names").addEventListener("click", function (e) {
+  e.preventDefault();
+  clearPage();
+  showGame();
+  assignNames();
+});
+
+function assignNames() {
+  const player1 = document.querySelector(".p1-input").value;
+  const player2 = document.querySelector(".p2-input").value;
+  const playerOne = new createPlayer(player1, "X");
+  const playerTwo = new createPlayer(player2, "O");
+}
+
+function clearPage() {
+  modal.style.display = "none";
+  document.querySelector(".sp-button").style.display = "none";
+  document.querySelector(".mp-button").style.display = "none";
+  document.querySelector(".shape-container").style.display = "none";
+}
+
+function showGame() {
+  const board = document.querySelector(".board-container");
+  board.style.transform = "translateY(0px)";
+  board.style.opacity = "1";
+}
+
 function createPlayer(name, marker) {
   this.name = name;
   this.marker = marker;
 }
-
-const playerOne = new createPlayer("Player 1", "X");
-const playerTwo = new createPlayer("Player 2", "O");
 
 const playGame = {
   placeMarker: function () {
