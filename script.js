@@ -1,66 +1,64 @@
-const modal = document.querySelector(".modal-container");
-
-document.querySelector(".mp-button").addEventListener("click", function () {
-  modal.style.display = "flex";
-});
-document.querySelector(".exit").addEventListener("click", function () {
-  modal.style.display = "none";
-});
-window.addEventListener("click", function (e) {
-  if (e.target === modal) {
-    modal.style.display = "none";
-  }
-});
-
-document.querySelector(".submit-names").addEventListener("click", function (e) {
-  e.preventDefault();
-  clearPage();
-  showGame();
-  assignNames();
-});
-
-function assignNames() {
-  const player1 = document.querySelector(".p1-input").value;
-  const player2 = document.querySelector(".p2-input").value;
-  const playerOne = new createPlayer(player1, "X");
-  const playerTwo = new createPlayer(player2, "O");
-}
-
-function clearPage() {
-  modal.style.display = "none";
-  document.querySelector(".sp-button").style.display = "none";
-  document.querySelector(".mp-button").style.display = "none";
-  document.querySelector(".shape-container").style.display = "none";
-}
+const startButton = document.querySelector(".start-btn");
+startButton.addEventListener("click", showGame);
 
 function showGame() {
-  const board = document.querySelector(".board-container");
-  board.style.transform = "translateY(0px)";
-  board.style.opacity = "1";
+  document.querySelector(".game-container").style.display = "grid";
+  startButton.style.display = "none";
 }
 
-function createPlayer(name, marker) {
-  this.name = name;
-  this.marker = marker;
-}
+const gameBoard = (function () {
+  const cell = document.querySelectorAll(".cell");
 
-const playGame = {
-  placeMarker: function () {
-    const cell = document.querySelectorAll(".board-cell");
-    const cellContent = document.querySelectorAll(".content");
-    let turn = 1;
+  const CreatePlayer = function (name, mark, color) {
+    this.name = name;
+    this.mark = mark;
+    this.color = color;
+  };
+  const playerOne = new CreatePlayer("Player 1", "X", "#ff3c7d");
+  const playerTwo = new CreatePlayer("Player 2", "O", "#00ebcb");
+
+  turn = 1;
+
+  let boardArray = ["", "", "", "", "", "", "", "", ""];
+
+  const winCombo = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [3, 5, 7],
+  ];
+
+  const checkWin = function () {
+    for (let i = 0; i < cell.length; i++) {
+      if (TO BE CONTINUED HERE!!!!) {
+        
+      }
+    }
+  };
+
+  const placeMarker = function () {
     for (let i = 0; i < cell.length; i++) {
       cell[i].addEventListener("click", function () {
-        if (turn === 1 && cellContent[i].textContent === "") {
-          cellContent[i].textContent = playerOne.marker;
+        if (cell[i].textContent === "" && turn === 1) {
+          cell[i].style.color = playerOne.color;
+          cell[i].textContent = playerOne.mark;
+          boardArray[i] = playerOne.mark;
           turn = 2;
-        } else if (turn === 2 && cellContent[i].textContent === "") {
-          cellContent[i].textContent = playerTwo.marker;
+        } else if (cell[i].textContent === "" && turn === 2) {
+          cell[i].style.color = playerTwo.color;
+          cell[i].textContent = playerTwo.mark;
+          boardArray[i] = playerTwo.mark;
           turn = 1;
         }
       });
     }
-  },
-};
+  };
 
-playGame.placeMarker();
+  return { placeMarker };
+})();
+
+gameBoard.placeMarker();

@@ -4,89 +4,38 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
-    <title>Odin Tic Tac Toe</title>
+    <title>Odin TicTacToe</title>
   </head>
   <body>
-    <main>
-      <div class="logo-container">
-        <div class="logo-title">
-          <p class="tic">Tic</p>
-          <p class="tac">Tac</p>
-          <p class="toe">Toe</p>
+    <button class="start-btn">Start</button>
+
+    <section class="game-container">
+      <div class="score-container">
+        <div class="p1-container">
+          <p class="p1-name">Player 1 (X)</p>
+          <p class="p1-score"></p>
         </div>
-        <div class="shape-container">
-          <img src="img/lux-logo.png" />
-          <div class="shape">O</div>
-          <div class="shape">O</div>
-          <div class="shape">O</div>
-          <div class="shape">O</div>
-          <div class="shape">X</div>
-          <div class="shape">X</div>
-          <div class="shape">X</div>
-          <div class="shape">X</div>
-        </div>
-        <div class="button-container">
-          <button class="sp-button">SinglePlayer</button>
-          <button class="mp-button">MultiPlayer</button>
+        <div class="p2-container">
+          <p class="p2-name">Player 2 (O)</p>
+          <p class="p2-score"></p>
         </div>
       </div>
-
-      <div class="modal-container">
-        <div class="modal-content">
-          <div class="exit"><p>X</p></div>
-          <form action="" method="">
-            <h2>What is your name?</h2>
-            <div class="p1-container">
-              <label for="p1-name" class="p1-label">Player 1:</label>
-              <input
-                name="p1-name"
-                type="text"
-                class="p1-input"
-                maxlength="16"
-                autocomplete="off"
-                required
-              />
-            </div>
-            <div class="p2-container">
-              <label for="p2-name" class="p2-label">Player 2:</label>
-              <input
-                name="p2-name"
-                type="text"
-                class="p2-input"
-                maxlength="16"
-                autocomplete="off"
-                required
-              />
-            </div>
-            <button class="submit-names">Start</button>
-          </form>
-        </div>
+      <div class="board-container">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
       </div>
-
-      <section class="board-container">
-        <div class="board">
-          <div class="board-cell"><p class="content"></p></div>
-          <div class="board-cell"><p class="content"></p></div>
-          <div class="board-cell"><p class="content"></p></div>
-          <div class="board-cell"><p class="content"></p></div>
-          <div class="board-cell"><p class="content"></p></div>
-          <div class="board-cell"><p class="content"></p></div>
-          <div class="board-cell"><p class="content"></p></div>
-          <div class="board-cell"><p class="content"></p></div>
-          <div class="board-cell"><p class="content"></p></div>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <p>The Odin Project - Tic Tac Toe - Made by Ekaterina Furman</p>
-    </footer>
+      <div class="control-container">
+        <button class="restart-btn">Restart</button>
+      </div>
+    </section>
   </body>
 </html>
