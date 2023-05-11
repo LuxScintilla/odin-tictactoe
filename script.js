@@ -1,4 +1,7 @@
+const cell = document.querySelectorAll(".cell");
 const startButton = document.querySelector(".start-btn");
+const resetButton = document.querySelector(".reset-btn");
+
 startButton.addEventListener("click", showGame);
 
 function showGame() {
@@ -15,11 +18,11 @@ const playerOne = new CreatePlayer("Player 1", "X", "#ff3c7d");
 const playerTwo = new CreatePlayer("Player 2", "O", "#00ebcb");
 
 const gameBoard = (function () {
-  const cell = document.querySelectorAll(".cell");
-
   let turn = 1;
 
-  markArray = ["", "", "", "", "", "", "", "", ""];
+  let gameFinished = false;
+
+  let boardArray = ["", "", "", "", "", "", "", "", ""];
 
   const winCombo = [
     [0, 1, 2],
@@ -40,29 +43,46 @@ const gameBoard = (function () {
         cell[winCombo[i][2]].textContent === "X"
       ) {
         console.log("Player 1 is the Winner!");
+        revealWin(winCombo[i]);
       } else if (
         cell[winCombo[i][0]].textContent === "O" &&
         cell[winCombo[i][1]].textContent === "O" &&
         cell[winCombo[i][2]].textContent === "O"
       ) {
         console.log("Player 2 is the Winner!");
-      } else if (!markArray.includes("")) {
+        revealWin(winCombo[i]);
+      } else if (!boardArray.includes("")) {
         console.log("It is a TIE!");
       }
     }
   }
 
+  function revealWin(array) {
+    array.forEach((item) => {
+      cell[item].classList.add("winning-cell");
+    });
+    gameFinished = true;
+  }
+
   function placeMarker() {
     for (let i = 0; i < cell.length; i++) {
       cell[i].addEventListener("click", function () {
-        if (cell[i].textContent === "" && turn === 1) {
+        if (
+          cell[i].textContent === "" &&
+          turn === 1 &&
+          gameFinished === false
+        ) {
           cell[i].textContent = playerOne.mark;
-          markArray[i] = playerOne.mark;
+          boardArray[i] = playerOne.mark;
           checkCombo();
           turn = 2;
-        } else if (cell[i].textContent === "" && turn === 2) {
+        } else if (
+          cell[i].textContent === "" &&
+          turn === 2 &&
+          gameFinished === false
+        ) {
           cell[i].textContent = playerTwo.mark;
-          markArray[i] = playerTwo.mark;
+          boardArray[i] = playerTwo.mark;
           checkCombo();
           turn = 1;
         }
@@ -70,7 +90,18 @@ const gameBoard = (function () {
     }
   }
 
-  return { placeMarker };
+  function resetGame() {
+    turn = 1;
+    gameFinished = false;
+    boardArray = ["", "", "", "", "", "", "", "", ""];
+    for (let i = 0; i < cell.length; i++) {
+      cell[i].textContent = "";
+      cell[i].classList.remove("winning-cell");
+    }
+  }
+  resetButton.addEventListener("click", resetGame);
+
+  return { resetGame, placeMarker };
 })();
 
 gameBoard.placeMarker();

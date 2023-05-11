@@ -60,13 +60,17 @@ body {
   font-weight: bolder;
 }
 
-.restart-btn {
+.winning-cell {
+  background-color: chartreuse;
+}
+
+.reset-btn {
   border: none;
   padding: 10px 20px 10px 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
   transition: 0.3s;
 }
 
-.restart-btn:hover {
+.reset-btn:hover {
   background-color: rgb(129, 182, 182);
 }
