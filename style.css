@@ -4,9 +4,17 @@
   box-sizing: border-box;
 }
 
+:root {
+  --main-bg-clr: #132333;
+  --pink: #ff3c7d;
+  --teal: #00ebcb;
+  --lime: #cbff3d;
+  --orange: #ff831e;
+}
+
 body {
   height: 100vh;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Mochiy Pop One", sans-serif;
   background-image: url(img/background.jpg);
   background-position: center;
   background-repeat: no-repeat;
@@ -23,22 +31,32 @@ body {
   transition: 0.3s;
 }
 
+.start-btn-hidden {
+  display: none;
+}
+
 .start-btn:hover {
   background-color: rgb(129, 182, 182);
 }
 
 .game-container {
-  height: 100vh;
-  width: 720px;
   display: none;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 2fr 1fr;
   align-items: center;
   justify-items: center;
+  height: 75vh;
+  width: 640px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: var(--main-bg-clr);
+  border-top: 5px solid var(--pink);
+  border-bottom: 5px solid var(--teal);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 .score-container {
-  width: 720px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -56,7 +74,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: bolder;
 }
 
@@ -73,4 +91,132 @@ body {
 
 .reset-btn:hover {
   background-color: rgb(129, 182, 182);
+}
+
+.quit-btn {
+  border: none;
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  transition: 0.3s;
+}
+
+.quit-btn:hover {
+  background-color: rgb(129, 182, 182);
+}
+
+/* MODAL STYLING ---------------------------------------*/
+
+.modal {
+  background-color: var(--main-bg-clr);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  border-top: 5px solid var(--pink);
+  border-bottom: 5px solid var(--teal);
+  border-left: 0;
+  border-right: 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  z-index: 0;
+  margin: 200px auto;
+}
+
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal > h2 {
+  margin-bottom: 20px;
+}
+
+.modal > form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.p1-wrap,
+.p2-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.p1-label,
+.p2-label {
+  margin-bottom: 5px;
+  z-index: 2;
+}
+
+.p1-label::after {
+  content: "X";
+  position: absolute;
+  top: -25px;
+  left: 85px;
+  font-size: 3rem;
+  color: var(--pink);
+  transform: rotate(15deg);
+  z-index: 1;
+}
+
+.p2-label::after {
+  content: "O";
+  position: absolute;
+  top: 55px;
+  left: 85px;
+  font-size: 3rem;
+  color: var(--teal);
+  transform: rotate(15deg);
+  z-index: 1;
+}
+
+.p1-input,
+.p2-input {
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main-bg-clr);
+  height: 2rem;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
+.p1-input:focus {
+  outline: 1px solid var(--pink);
+}
+
+.p2-input:focus {
+  outline: 1px solid var(--teal);
+}
+
+input[type="text"] {
+  color: white;
+  padding-left: 10px;
+}
+
+.submit-names {
+  border: none;
+  height: 2rem;
+  border-radius: 5px;
+  background-color: var(--lime);
+  font-weight: bolder;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  transition: 0.3s;
+}
+
+.submit-names:hover {
+  background-color: white;
+}
+
+.cancel {
+  border: none;
+  height: 2rem;
+  border-radius: 5px;
+  background-color: var(--orange);
+  font-weight: bolder;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  transition: 0.3s;
+}
+
+.cancel:hover {
+  background-color: white;
 }

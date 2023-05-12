@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
     <title>Odin TicTacToe</title>
@@ -11,14 +17,44 @@
   <body>
     <button class="start-btn">Start</button>
 
+    <dialog class="modal">
+      <h2>What is your name?</h2>
+      <form action="" method="dialog">
+        <div class="p1-wrap">
+          <label for="p1-name" class="p1-label">Player 1</label>
+          <input
+            name="p1-name"
+            class="p1-input"
+            type="text"
+            maxlength="16"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="p2-wrap">
+          <label for="p2-name" class="p2-label">Player 2</label>
+          <input
+            name="p2-name"
+            class="p2-input"
+            type="text"
+            maxlength="16"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <button class="submit-names">Submit</button>
+        <button class="cancel">Cancel</button>
+      </form>
+    </dialog>
+
     <section class="game-container">
       <div class="score-container">
         <div class="p1-container">
-          <p class="p1-name">Player 1 (X)</p>
+          <p class="p1-name"></p>
           <p class="p1-score"></p>
         </div>
         <div class="p2-container">
-          <p class="p2-name">Player 2 (O)</p>
+          <p class="p2-name"></p>
           <p class="p2-score"></p>
         </div>
       </div>
@@ -35,6 +71,7 @@
       </div>
       <div class="control-container">
         <button class="reset-btn">Restart</button>
+        <button class="quit-btn">Quit</button>
       </div>
     </section>
   </body>

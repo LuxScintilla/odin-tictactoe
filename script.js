@@ -1,12 +1,31 @@
-const cell = document.querySelectorAll(".cell");
 const startButton = document.querySelector(".start-btn");
-const resetButton = document.querySelector(".reset-btn");
 
-startButton.addEventListener("click", showGame);
+const modal = document.querySelector(".modal");
+const submitNames = document.querySelector(".submit-names");
+const cancelButton = document.querySelector(".cancel");
+
+const p1Input = document.querySelector(".p1-input").value;
+const p2Input = document.querySelector(".p2-input").value;
+
+const cell = document.querySelectorAll(".cell");
+
+const resetButton = document.querySelector(".reset-btn");
+const quitButton = document.querySelector(".quit-btn");
+
+startButton.addEventListener("click", function () {
+  modal.showModal();
+});
+cancelButton.addEventListener("click", function () {
+  modal.close();
+});
+submitNames.addEventListener("click", function () {
+  showGame();
+  playerController.displayNames();
+});
 
 function showGame() {
   document.querySelector(".game-container").style.display = "grid";
-  startButton.style.display = "none";
+  startButton.classList.add("start-btn-hidden");
 }
 
 const CreatePlayer = function (name, mark, color) {
@@ -14,8 +33,16 @@ const CreatePlayer = function (name, mark, color) {
   this.mark = mark;
   this.color = color;
 };
-const playerOne = new CreatePlayer("Player 1", "X", "#ff3c7d");
-const playerTwo = new CreatePlayer("Player 2", "O", "#00ebcb");
+const playerOne = new CreatePlayer(p1Input, "X", "#ff3c7d");
+const playerTwo = new CreatePlayer(p2Input, "O", "#00ebcb");
+
+const playerController = (function () {
+  function displayNames() {
+    document.querySelector(".p1-name").textContent = playerOne.name;
+    document.querySelector(".p2-name").textContent = playerTwo.name;
+  }
+  return { displayNames };
+})();
 
 const gameBoard = (function () {
   let turn = 1;
@@ -72,6 +99,7 @@ const gameBoard = (function () {
           turn === 1 &&
           gameFinished === false
         ) {
+          cell[i].style.color = playerOne.color;
           cell[i].textContent = playerOne.mark;
           boardArray[i] = playerOne.mark;
           checkCombo();
@@ -81,6 +109,7 @@ const gameBoard = (function () {
           turn === 2 &&
           gameFinished === false
         ) {
+          cell[i].style.color = playerTwo.color;
           cell[i].textContent = playerTwo.mark;
           boardArray[i] = playerTwo.mark;
           checkCombo();
@@ -99,9 +128,17 @@ const gameBoard = (function () {
       cell[i].classList.remove("winning-cell");
     }
   }
-  resetButton.addEventListener("click", resetGame);
 
-  return { resetGame, placeMarker };
+  function quitGame() {
+    resetGame();
+    document.querySelector(".game-container").style.display = "none";
+    startButton.classList.remove("start-btn-hidden");
+  }
+
+  return { resetGame, quitGame, placeMarker };
 })();
+
+resetButton.addEventListener("click", gameBoard.resetGame);
+quitButton.addEventListener("click", gameBoard.quitGame);
 
 gameBoard.placeMarker();
