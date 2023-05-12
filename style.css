@@ -20,13 +20,19 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .start-btn {
   border: none;
-  padding: 10px 20px 10px 20px;
+  height: 2rem;
+  width: 145px;
+  border-radius: 5px;
+  background-color: var(--lime);
+  text-transform: uppercase;
+  font-weight: bolder;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
   transition: 0.3s;
 }
@@ -36,7 +42,65 @@ body {
 }
 
 .start-btn:hover {
-  background-color: rgb(129, 182, 182);
+  background-color: white;
+}
+
+.logo-wrap {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-title {
+  position: absolute;
+  display: flex;
+  z-index: 1;
+}
+
+.tic,
+.tac,
+.toe {
+  font-size: 4rem;
+}
+
+.tic {
+  color: var(--pink);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  animation: move 1s infinite;
+  animation-delay: 0s;
+}
+
+.tac {
+  color: var(--teal);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  animation: move 1s infinite;
+  animation-delay: 0.3s;
+}
+
+.toe {
+  color: var(--orange);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  animation: move 1s infinite;
+  animation-delay: 0.6s;
+}
+
+@keyframes move {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(5%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.logo-img {
+  position: relative;
+  height: 150px;
 }
 
 .game-container {
@@ -45,7 +109,7 @@ body {
   grid-template-rows: 1fr 2fr 1fr;
   align-items: center;
   justify-items: center;
-  height: 75vh;
+  height: 80vh;
   width: 640px;
   padding: 20px;
   border-radius: 5px;
@@ -56,9 +120,46 @@ body {
 }
 
 .score-container {
+  position: relative;
+  background: linear-gradient(90deg, #223446, var(--main-bg-clr), #223446);
+  border-radius: 5px;
+  padding: 0px 20px 0px 20px;
+  color: white;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.score-container::before {
+  content: "X";
+  position: absolute;
+  top: 15px;
+  left: 175px;
+  font-size: 3rem;
+  color: var(--pink);
+  transform: rotate(15deg);
+}
+
+.score-container::after {
+  content: "O";
+  position: absolute;
+  top: 15px;
+  right: 175px;
+  font-size: 3rem;
+  color: var(--teal);
+  transform: rotate(-15deg);
+}
+.versus {
+  font-size: 4rem;
+}
+
+.p1-container,
+.p2-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .board-container {
@@ -79,29 +180,42 @@ body {
 }
 
 .winning-cell {
-  background-color: chartreuse;
+  background-color: var(--lime);
+}
+
+.control-container {
+  display: flex;
+  gap: 20px;
 }
 
 .reset-btn {
   border: none;
-  padding: 10px 20px 10px 20px;
+  height: 2rem;
+  width: 145px;
+  border-radius: 5px;
+  background-color: var(--lime);
+  font-weight: bolder;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
   transition: 0.3s;
 }
 
 .reset-btn:hover {
-  background-color: rgb(129, 182, 182);
+  background-color: white;
 }
 
 .quit-btn {
   border: none;
-  padding: 10px 20px 10px 20px;
+  height: 2rem;
+  width: 145px;
+  border-radius: 5px;
+  background-color: var(--orange);
+  font-weight: bolder;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
   transition: 0.3s;
 }
 
 .quit-btn:hover {
-  background-color: rgb(129, 182, 182);
+  background-color: white;
 }
 
 /* MODAL STYLING ---------------------------------------*/
@@ -121,7 +235,8 @@ body {
 }
 
 .modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .modal > h2 {
@@ -218,5 +333,42 @@ input[type="text"] {
 }
 
 .cancel:hover {
+  background-color: white;
+}
+
+/* WIN MODAL STYLING ---------------------------------------*/
+
+.win-modal {
+  background-color: var(--main-bg-clr);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  border-top: 5px solid var(--pink);
+  border-bottom: 5px solid var(--teal);
+  border-left: 0;
+  border-right: 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  z-index: 0;
+  margin: 300px auto;
+}
+
+.win-modal::backdrop {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.continue {
+  border: none;
+  height: 2rem;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: var(--lime);
+  font-weight: bolder;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  transition: 0.3s;
+}
+
+.continue:hover {
   background-color: white;
 }

@@ -15,6 +15,14 @@
     <title>Odin TicTacToe</title>
   </head>
   <body>
+    <div class="logo-wrap">
+      <div class="game-title">
+        <p class="tic">Tic</p>
+        <p class="tac">Tac</p>
+        <p class="toe">Toe</p>
+      </div>
+      <img class="logo-img" src="img/lux-logo.png" />
+    </div>
     <button class="start-btn">Start</button>
 
     <dialog class="modal">
@@ -47,15 +55,21 @@
       </form>
     </dialog>
 
+    <dialog class="win-modal">
+      <p class="win-message"></p>
+      <button class="continue">Continue</button>
+    </dialog>
+
     <section class="game-container">
       <div class="score-container">
         <div class="p1-container">
           <p class="p1-name"></p>
-          <p class="p1-score"></p>
+          <p class="p1-score">0</p>
         </div>
+        <p class="versus">VS</p>
         <div class="p2-container">
           <p class="p2-name"></p>
-          <p class="p2-score"></p>
+          <p class="p2-score">0</p>
         </div>
       </div>
       <div class="board-container">

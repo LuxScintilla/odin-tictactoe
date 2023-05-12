@@ -1,11 +1,19 @@
 const startButton = document.querySelector(".start-btn");
+const LogoContainer = document.querySelector(".logo-wrap");
 
 const modal = document.querySelector(".modal");
 const submitNames = document.querySelector(".submit-names");
 const cancelButton = document.querySelector(".cancel");
 
-const p1Input = document.querySelector(".p1-input").value;
-const p2Input = document.querySelector(".p2-input").value;
+const p1Input = document.querySelector(".p1-input");
+const p2Input = document.querySelector(".p2-input");
+
+const p1Score = document.querySelector(".p1-score");
+const p2Score = document.querySelector(".p2-score");
+
+const winModal = document.querySelector(".win-modal");
+const winMessage = document.querySelector(".win-message");
+const continueButton = document.querySelector(".continue");
 
 const cell = document.querySelectorAll(".cell");
 
@@ -19,29 +27,46 @@ cancelButton.addEventListener("click", function () {
   modal.close();
 });
 submitNames.addEventListener("click", function () {
-  showGame();
+  playerOne = new CreatePlayer(p1Input.value, "X", "#ff3c7d", 0);
+  playerTwo = new CreatePlayer(p2Input.value, "O", "#00ebcb", 0);
   playerController.displayNames();
+  showGame();
+});
+continueButton.addEventListener("click", function () {
+  gameBoard.resetGame();
+  winModal.close();
 });
 
 function showGame() {
   document.querySelector(".game-container").style.display = "grid";
   startButton.classList.add("start-btn-hidden");
+  LogoContainer.style.display = "none";
 }
 
-const CreatePlayer = function (name, mark, color) {
+const CreatePlayer = function (name, mark, color, score) {
   this.name = name;
   this.mark = mark;
   this.color = color;
+  this.score = score;
 };
-const playerOne = new CreatePlayer(p1Input, "X", "#ff3c7d");
-const playerTwo = new CreatePlayer(p2Input, "O", "#00ebcb");
+let playerOne;
+let playerTwo;
 
 const playerController = (function () {
+  // const playerOne = new CreatePlayer(p1Input.value, "X", "#ff3c7d", 0);
+  // const playerTwo = new CreatePlayer(p2Input.value, "O", "#00ebcb", 0);
+
   function displayNames() {
-    document.querySelector(".p1-name").textContent = playerOne.name;
-    document.querySelector(".p2-name").textContent = playerTwo.name;
+    document.querySelector(".p1-name").textContent = p1Input.value;
+    document.querySelector(".p2-name").textContent = p2Input.value;
   }
-  return { displayNames };
+
+  function updateScore() {
+    p1Score.textContent = playerOne.score;
+    p2Score.textContent = playerTwo.score;
+  }
+
+  return { displayNames, updateScore };
 })();
 
 const gameBoard = (function () {
@@ -69,17 +94,20 @@ const gameBoard = (function () {
         cell[winCombo[i][1]].textContent === "X" &&
         cell[winCombo[i][2]].textContent === "X"
       ) {
-        console.log("Player 1 is the Winner!");
+        playerOne.score += 1;
+        winMessage.textContent = `${playerOne.name} won this round!`;
         revealWin(winCombo[i]);
       } else if (
         cell[winCombo[i][0]].textContent === "O" &&
         cell[winCombo[i][1]].textContent === "O" &&
         cell[winCombo[i][2]].textContent === "O"
       ) {
-        console.log("Player 2 is the Winner!");
+        playerTwo.score += 1;
+        winMessage.textContent = `${playerTwo.name} won this round!`;
         revealWin(winCombo[i]);
       } else if (!boardArray.includes("")) {
-        console.log("It is a TIE!");
+        winMessage.textContent = "It is a TIE!";
+        winModal.showModal();
       }
     }
   }
@@ -89,6 +117,8 @@ const gameBoard = (function () {
       cell[item].classList.add("winning-cell");
     });
     gameFinished = true;
+    playerController.updateScore();
+    winModal.showModal();
   }
 
   function placeMarker() {
@@ -129,16 +159,26 @@ const gameBoard = (function () {
     }
   }
 
+  function resetScore() {
+    playerOne.score = 0;
+    playerTwo.score = 0;
+  }
+
   function quitGame() {
     resetGame();
     document.querySelector(".game-container").style.display = "none";
     startButton.classList.remove("start-btn-hidden");
+    LogoContainer.style.display = "flex";
   }
 
-  return { resetGame, quitGame, placeMarker };
+  return { resetGame, resetScore, quitGame, placeMarker };
 })();
 
-resetButton.addEventListener("click", gameBoard.resetGame);
+resetButton.addEventListener("click", function () {
+  gameBoard.resetGame();
+  gameBoard.resetScore();
+  playerController.updateScore();
+});
 quitButton.addEventListener("click", gameBoard.quitGame);
 
 gameBoard.placeMarker();
