@@ -73,6 +73,7 @@ const gameBoard = (function () {
   let turn = 1;
 
   let gameFinished = false;
+  let tie = null;
 
   let boardArray = ["", "", "", "", "", "", "", "", ""];
 
@@ -94,6 +95,7 @@ const gameBoard = (function () {
         cell[winCombo[i][1]].textContent === "X" &&
         cell[winCombo[i][2]].textContent === "X"
       ) {
+        tie = false;
         playerOne.score += 1;
         winMessage.textContent = `${playerOne.name} won this round!`;
         revealWin(winCombo[i]);
@@ -102,11 +104,18 @@ const gameBoard = (function () {
         cell[winCombo[i][1]].textContent === "O" &&
         cell[winCombo[i][2]].textContent === "O"
       ) {
+        tie = false;
         playerTwo.score += 1;
         winMessage.textContent = `${playerTwo.name} won this round!`;
         revealWin(winCombo[i]);
-      } else if (!boardArray.includes("")) {
-        winMessage.textContent = "It is a TIE!";
+      }
+    }
+  }
+
+  function checkTie() {
+    for (let i = 0; i < winCombo.length; i++) {
+      if (tie !== false && !boardArray.includes("")) {
+        winMessage.textContent = "It is a TIE";
         winModal.showModal();
       }
     }
@@ -133,6 +142,7 @@ const gameBoard = (function () {
           cell[i].textContent = playerOne.mark;
           boardArray[i] = playerOne.mark;
           checkCombo();
+          checkTie();
           turn = 2;
         } else if (
           cell[i].textContent === "" &&
@@ -143,6 +153,7 @@ const gameBoard = (function () {
           cell[i].textContent = playerTwo.mark;
           boardArray[i] = playerTwo.mark;
           checkCombo();
+          checkTie();
           turn = 1;
         }
       });
@@ -150,6 +161,7 @@ const gameBoard = (function () {
   }
 
   function resetGame() {
+    tie = null;
     turn = 1;
     gameFinished = false;
     boardArray = ["", "", "", "", "", "", "", "", ""];
