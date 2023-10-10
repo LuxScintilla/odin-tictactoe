@@ -1,6 +1,6 @@
 ![Header](./github-ttt-banner.jpg)
 
-# THE ODIN PROJECT Tic-Tac-Toe
+# Tic-Tac-Toe
 
 ### Languages and Tools used in this project
 
