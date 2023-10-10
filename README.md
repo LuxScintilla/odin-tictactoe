@@ -1,4 +1,4 @@
-![Header](./github-tictactoe-banner.jpg)
+![Header](./github-ttt-banner.jpg)
 
 # odin-todo
 
